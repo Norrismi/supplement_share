@@ -1,0 +1,89 @@
+/* 
+#6B717E grey
+
+#FF7E6B Salmon
+
+#F0F7F4 White
+
+#A2E3C4 Mint
+
+#2A0C4E Purple */
+
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+    flex-direction: row;
+
+
+
+    flex-direction: row;
+    /* background-color: #2A0C4E; */
+    height: auto
+}
+
+.main-card {
+    height: 150px;
+    width: 400px;
+    background-color: #FF7E6B;
+    border-radius: 20px;
+}
+
+
+
+
+
+.text-items {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    padding: 0 25px 0 10px;
+    font-weight: bold;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100px;
+    
+}
+
+.description {
+    white-space: nowrap;
+    width: 115px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+button {
+    background-color: #fff;
+    border-radius: 20px;
+    border: none;
+}
+
+
+button:focus {
+    outline: 0 !important;
+}
+
+
+#btn-icon {
+    height: 20px;
+    width: auto;
+    color: #6B717E;
+   
+  
+}
+
+#btn-icon:hover {
+    color: #A2E3C4;
+}

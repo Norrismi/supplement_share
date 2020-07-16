@@ -1,0 +1,106 @@
+import React, { Component } from "react";
+import "./NS-Form-Styles.css";
+//import API Endpoint
+
+//Need to convert form to the supplementTracking project
+
+class NewSupplementForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  // postDataHandler = (e) => {
+  //     e.preventDefault();
+  //     this.props.onSubmit(this.state);
+
+  //     const data = this.state;
+
+  //     data.phone && data.message
+  //       ? api.post("/submission.json", data)
+  //       : this.setState({
+  //           name: "",
+  //           phone: "",
+  //           email: "",
+  //           message: "",
+  //           success: [],
+  //         });
+  //   };
+
+  //   handleChange = (event) => {
+  //     event.preventDefault();
+  //     const { name, value } = event.target;
+  //     let formErrors = this.state.formErrors;
+
+  //     switch (name) {
+  //       case "email":
+  //         formErrors.email = emailRegex.test(value)
+  //           ? null
+  //           : "Please enter a valid email address";
+  //         break;
+
+  //       default:
+  //         break;
+  //     }
+  //     this.setState({ formErrors, [name]: value });
+  //   };
+
+  render() {
+    // let { formErrors } = this.state;
+    return (
+      <div className="add-supplement">
+        <div className="add-supplement-form">
+          <form
+            id="add-supplement-form"
+            //   onSubmit={this.postDataHandler}
+            >
+            <h5 className='title-text'>Add New Supplement</h5>
+            <div className="supplement-name">
+              <input
+                type="text"
+                name="name"
+                value={this.state.name}
+                onChange={this.handleChange}
+                placeholder="Supplement Name"
+                required
+              />
+            </div>
+            <br />
+            <div className="supplement-benefit">
+              <input
+                type="text"
+                name="name"
+                value={this.state.name}
+                onChange={this.handleChange}
+                placeholder="Supplement Benefit (ex. Better Sleep)"
+                required
+              />
+            </div>
+            <br/>
+            <div className="supplement-description">
+              <textarea
+                className="textarea"
+                name="description"
+                value={this.state.description}
+                onChange={this.handleChange}
+                placeholder="Supplement Description"
+                rows="20"
+              ></textarea>
+            </div>
+            {/* {formErrors.phone ? <span>{formErrors.phone}</span> : null} */}
+            <div className="created-date">
+              <label>Date Created</label>
+              <br />
+              <input type="date" id="created-date" name="created-date" />
+            </div>
+            {/* {formErrors.email ? <span>{formErrors.email}</span> : null} */}
+          
+            <br />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default NewSupplementForm;

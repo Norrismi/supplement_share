@@ -1,0 +1,52 @@
+.add-supplement-container{
+    padding: 10px;
+    
+}
+
+.add-supplement-title{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.add-supplement{
+    display: flex;
+    justify-content: center;
+}
+
+.add-supplement-form {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0 0 40px;
+    height: 450px;
+    width: 500px;
+    background-color: #2A0C4E;
+    border-radius: 20px;
+    color: white
+  }
+  
+  input {
+    width: 300px;
+    height: 35px;
+    
+  }
+
+  textarea {
+    width: 400px;
+    height: 70px;
+    
+  }
+
+  label{
+      line-height: 0em;
+      padding-top: 20px;
+      color: white
+  }
+
+  .title-text{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+    
+  }
+  
