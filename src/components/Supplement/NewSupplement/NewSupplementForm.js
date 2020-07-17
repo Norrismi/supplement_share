@@ -7,7 +7,13 @@ import "./NS-Form-Styles.css";
 class NewSupplementForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      name:'',
+      benefit:'',
+      description:'',
+      createdDate: ''
+
+    };
   }
   // postDataHandler = (e) => {
   //     e.preventDefault();
@@ -44,6 +50,18 @@ class NewSupplementForm extends Component {
   //     this.setState({ formErrors, [name]: value });
   //   };
 
+  handleChange = (event) => {
+    console.log(event);
+    const { name, value } = event.target;
+
+    this.setState({ [name]: value });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state);
+  };
+
   render() {
     // let { formErrors } = this.state;
     return (
@@ -51,11 +69,12 @@ class NewSupplementForm extends Component {
         <div className="add-supplement-form">
           <form
             id="add-supplement-form"
-            //   onSubmit={this.postDataHandler}
+             onSubmit={this.handleSubmit}
             >
-            <h5 className='title-text'>Add New Supplement</h5>
+            <h5 className='add-title-text'>Add New Supplement</h5>
             <div className="supplement-name">
               <input
+              id='add-sup-input'
                 type="text"
                 name="name"
                 value={this.state.name}
@@ -67,9 +86,10 @@ class NewSupplementForm extends Component {
             <br />
             <div className="supplement-benefit">
               <input
+               id='add-sup-input'
                 type="text"
-                name="name"
-                value={this.state.name}
+                name="benefit"
+                value={this.state.benefit}
                 onChange={this.handleChange}
                 placeholder="Supplement Benefit (ex. Better Sleep)"
                 required
@@ -78,6 +98,7 @@ class NewSupplementForm extends Component {
             <br/>
             <div className="supplement-description">
               <textarea
+               id='add-sup-textarea'
                 className="textarea"
                 name="description"
                 value={this.state.description}
@@ -87,15 +108,24 @@ class NewSupplementForm extends Component {
               ></textarea>
             </div>
             {/* {formErrors.phone ? <span>{formErrors.phone}</span> : null} */}
-            <div className="created-date">
+            {/* <div className="created-date">
               <label>Date Created</label>
               <br />
-              <input type="date" id="created-date" name="created-date" />
-            </div>
+              <input 
+              type="date" 
+              id="created-date" 
+              name="createdDate"
+              value={this.state.description}
+              onChange={this.handleChange} 
+              />
+            </div> */}
             {/* {formErrors.email ? <span>{formErrors.email}</span> : null} */}
           
             <br />
-            <button type="submit">Submit</button>
+            <div className="add-btn-container">
+
+            <button className="add-sup" type="submit">Add Supplement</button>
+            </div>
           </form>
         </div>
       </div>

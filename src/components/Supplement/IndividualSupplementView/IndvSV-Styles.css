@@ -1,20 +1,17 @@
-* {
-    box-sizing: border-box;
-}
-
-h4 {
+.indv-title-one,
+.indv-title-two {
     display: flex;
     justify-content: center;
     padding-top: 20px;
 }
 
-.card-container {
+.indv-card-container {
     display: flex;
     justify-content: center;
 }
 
 
-.supplement-card {
+.indv-supplement-card {
     display: flex;
     justify-content: center;
     border-radius: 20px;
@@ -24,19 +21,19 @@ h4 {
     color: white;
 }
 
-#title {
+#indv-title {
     font-weight: bold;
     display: flex;
     /* padding: 0 0 5px 0 */
 }
 
-#entry {
+#indv-entry {
     display: flex;
     /* padding: 0 0 30px 0; */
 
 }
 
-.left {
+.indv-left {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -44,7 +41,7 @@ h4 {
 }
 
 
-.right {
+.indv-right {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -53,25 +50,25 @@ h4 {
 
 
 
-.like-container{
+.like-container {
     display: flex;
     flex-direction: column-reverse;
     padding: 0 20px 0 0;
-    
+
 }
 
 
-.like{
+.like {
     display: flex;
     justify-content: flex-end;
 }
 
-#btn{
+#indv-btn {
     height: 25px;
     width: auto
 }
 
-button{
+.indv-btn {
     background-color: #FF7E6B;
     color: white;
     /* padding: 0 5px 0 0; */
@@ -79,14 +76,14 @@ button{
 
 }
 
-.fav{
+.fav {
     display: flex;
     flex-direction: row;
-    padding: 0 15px  0 0;
+    padding: 0 15px 0 0;
 }
 
-.not-fav{
+.not-fav {
     display: flex;
     flex-direction: row;
-    padding: 0 5px  0 0;
+    padding: 0 5px 0 0;
 }

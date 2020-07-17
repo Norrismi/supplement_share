@@ -17,7 +17,7 @@
 .add-supplement-form {
     display: flex;
     justify-content: center;
-    padding: 40px 0 0 40px;
+    align-items: center;
     height: 450px;
     width: 500px;
     background-color: #2A0C4E;
@@ -25,28 +25,39 @@
     color: white
   }
   
-  input {
+  #add-sup-input {
     width: 300px;
     height: 35px;
     
+    
   }
 
-  textarea {
-    width: 400px;
+  #add-sup-textarea {
+    width: 300px;
     height: 70px;
     
   }
 
-  label{
+  /* label{
       line-height: 0em;
       padding-top: 20px;
       color: white
-  }
+  } */
 
-  .title-text{
+  .add-title-text{
     display: flex;
     justify-content: center;
     padding-bottom: 10px;
     
+  }
+
+  .add-btn-container{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .add-sup{
+    border-radius: 5px;
+    padding: 5px;
   }
   

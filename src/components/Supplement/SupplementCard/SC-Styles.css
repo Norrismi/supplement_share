@@ -1,22 +1,10 @@
-/* 
-#6B717E grey
 
-#FF7E6B Salmon
-
-#F0F7F4 White
-
-#A2E3C4 Mint
-
-#2A0C4E Purple */
 
 .card-wrapper {
     display: flex;
     justify-content: center;
     padding-top: 5px;
     flex-direction: row;
-
-
-
     flex-direction: row;
     /* background-color: #2A0C4E; */
     height: auto
@@ -28,7 +16,6 @@
     background-color: #FF7E6B;
     border-radius: 20px;
 }
-
 
 
 

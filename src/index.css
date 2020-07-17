@@ -1,4 +1,21 @@
+/* 
+#6B717E grey
+#FF7E6B Salmon
+#F0F7F4 White
+#A2E3C4 Mint
+#2A0C4E Purple */
+
+
 *{ box-sizing: border-box;}
+
+body{
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: url(/src//Assets/whiteLeaves.jpeg) no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+}
 
 body {
   margin: 0;

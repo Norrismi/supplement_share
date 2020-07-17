@@ -3,13 +3,18 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
 import NotFound from "./components/Navigation/NotFound/NotFound";
 import UserPage from "./components/User/UserPage/UserPage";
-import IndividualSupplementView from './components/Supplement/IndividualSupplementView/IndvSupplementView'
+import IndvSupplementView from './components/Supplement/IndividualSupplementView/IndvSupplementView'
+import SignIn from './components/Auth/SignIn'
+import SignUp from './components/Auth/SignUp'
+
 
 function App() {
   return (
     <Router>
       <Switch>
-      <Route path="/IndividualSupplementView" component={IndividualSupplementView} />
+        <Route path="/SignUp" component={SignUp} />
+        <Route path="/SignIn"  component={SignIn} />
+        <Route path="/IndvSupplementView/:id" component={IndvSupplementView} />
         <Route path="/MyPage" component={UserPage} />
         <Route path="/" exact component={Dashboard} />
         <Route path="*" component={NotFound} />
