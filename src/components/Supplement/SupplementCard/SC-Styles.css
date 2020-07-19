@@ -11,6 +11,8 @@
 }
 
 .main-card {
+    display: flex;
+    /* flex-direction: column; */
     height: 150px;
     width: 400px;
     background-color: #FF7E6B;

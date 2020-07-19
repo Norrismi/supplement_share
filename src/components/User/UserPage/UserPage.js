@@ -4,10 +4,14 @@ import "../../Supplement/SupplementCard/SC-Styles.css";
 import SupplementCard from "../../Supplement/SupplementCard/SupplementCard";
 import "./UserPageStyles.css";
 import NewSupplementForm from "../../Supplement/NewSupplement/NewSupplementForm";
+import { connect } from "react-redux";
 
 class UserPage extends Component {
-  state = {};
+
   render() {
+   //console.log(this.props.supplement[0])
+    const { supplement } = this.props;
+
     return (
       <div>
         <TopNav />
@@ -16,27 +20,30 @@ class UserPage extends Component {
             <h3>About Me</h3>
             {/* If the paragraph wants to be kept a form is needed */}
             <p>
-              Labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+              nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+              occaecat cupidatat non proident, sunt in culpa qui officia
+              deserunt mollit anim id est laborum.
             </p>
           </div>
           <div className="right side">
             <h3>My Supplements</h3>
             <div className="supplement-card">
-              <SupplementCard className="supplement-card" />
+
+
+
+              {/* {supplement && supplement.map((a) => {
+                  return <SupplementCard supplement={supplement} key={a.id} />;
+                })} */}
+              <SupplementCard className="supplement-card" supplement={supplement}  />
             </div>
           </div>
         </div>
         <div className="add-supplement-container">
           <div className="add-supplement">
-         
-
-            <NewSupplementForm/>
-         
+            <NewSupplementForm />
           </div>
         </div>
       </div>
@@ -44,4 +51,10 @@ class UserPage extends Component {
   }
 }
 
-export default UserPage;
+const mapStateToProps = (state) => {
+  return {
+    supplement: state.supplement.submission,
+  };
+};
+
+export default connect(mapStateToProps)(UserPage);
