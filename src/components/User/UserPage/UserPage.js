@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TopNav from "../../Navigation/TopNav/TopNav";
 import "../../Supplement/SupplementCard/SC-Styles.css";
 import SupplementCard from "../../Supplement/SupplementCard/SupplementCard";
+import MaterialEx from '../../Supplement/SupplementCard/MaterialEx'
 import "./UserPageStyles.css";
 import NewSupplementForm from "../../Supplement/NewSupplement/NewSupplementForm";
 import { connect } from "react-redux";
@@ -28,7 +29,7 @@ class UserPage extends Component {
               deserunt mollit anim id est laborum.
             </p>
           </div>
-          <div className="right side">
+          <div className="right-side">
             <h3>My Supplements</h3>
             <div className="supplement-card">
 

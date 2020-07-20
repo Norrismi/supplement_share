@@ -1,20 +1,24 @@
+/* 
 
-
-.card-wrapper {
+.card-container {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     padding-top: 5px;
-    flex-direction: row;
-    flex-direction: row;
-    /* background-color: #2A0C4E; */
-    height: auto
+  
+   
 }
+
+.sup-card{
+    padding: 5px
+}
+
 
 .main-card {
     display: flex;
-    /* flex-direction: column; */
+    margin-bottom: 15px;
+   
     height: 150px;
-    width: 400px;
+    width: 500px;
     background-color: #FF7E6B;
     border-radius: 20px;
 }
@@ -75,4 +79,4 @@ button:focus {
 
 #btn-icon:hover {
     color: #A2E3C4;
-}
+} */

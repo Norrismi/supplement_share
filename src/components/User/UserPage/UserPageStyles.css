@@ -21,7 +21,7 @@
 .left-side{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 40%;
     /* padding: 20px; */
 }
 
@@ -29,6 +29,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    width: 60%;
     /* padding: 20px; */
     
     
@@ -41,8 +42,8 @@ h3{
 
 .supplement-card{
     display: flex;
-    justify-content: center;
-    padding: 0 0 0 20px ;
+    flex-direction: row;
+
 
 }
 
@@ -50,11 +51,11 @@ h3{
 /* ------------ */
 
 
-.add-supplement-container{
+/* .add-supplement-container{
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
+} */
 
 
 
