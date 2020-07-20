@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import TopNav from "../../Navigation/TopNav/TopNav";
 import "../../Supplement/SupplementCard/SC-Styles.css";
 import SupplementCard from "../../Supplement/SupplementCard/SupplementCard";
-import MaterialEx from '../../Supplement/SupplementCard/MaterialEx'
+import Typography from '@material-ui/core/Typography';
+
 import "./UserPageStyles.css";
 import NewSupplementForm from "../../Supplement/NewSupplement/NewSupplementForm";
 import { connect } from "react-redux";
 
 class UserPage extends Component {
-
   render() {
-   //console.log(this.props.supplement[0])
     const { supplement } = this.props;
 
     return (
@@ -18,6 +17,7 @@ class UserPage extends Component {
         <TopNav />
         <div className="user-container">
           <div className="left-side">
+              <Typography variant="h4"> My Supplements</Typography>
             <h3>About Me</h3>
             {/* If the paragraph wants to be kept a form is needed */}
             <p>
@@ -30,16 +30,22 @@ class UserPage extends Component {
             </p>
           </div>
           <div className="right-side">
-            <h3>My Supplements</h3>
-            <div className="supplement-card">
+          <Typography variant="h4"> My Supplements</Typography>
+          
+            {/* <div className="supplement-card"> */}
 
+            {/* supplementName={a.supplementName}
+            benefit={a.benefit}
+            description={a.description}
+            submittedBy={a.submittedBy} */}
 
+            {supplement &&
+              supplement.map(supplement => {
+                return <SupplementCard supplement={supplement} key={supplement.id} />;
+              })}
 
-              {/* {supplement && supplement.map((a) => {
-                  return <SupplementCard supplement={supplement} key={a.id} />;
-                })} */}
-              <SupplementCard className="supplement-card" supplement={supplement}  />
-            </div>
+            {/* <SupplementCard className="supplement-card" supplement={supplement}  /> */}
+            {/* </div> */}
           </div>
         </div>
         <div className="add-supplement-container">
@@ -59,3 +65,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(UserPage);
+
+
+
