@@ -22,6 +22,15 @@ const initState = {
 };
 
 const supplementReducer = (state = initState, action) => {
+
+  switch (action.type) {
+    case 'CREATE_SUPPLEMENT':
+      console.log('createdSupplement', action.supplement)
+      break;
+  
+    default:
+      break;
+  }
   return state;
 };
 

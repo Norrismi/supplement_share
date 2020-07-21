@@ -18,7 +18,7 @@ class UserPage extends Component {
         <div className="user-container">
           <div className="left-side">
               <Typography variant="h4"> My Supplements</Typography>
-            <h3>About Me</h3>
+            {/* <h3>About Me</h3> */}
             {/* If the paragraph wants to be kept a form is needed */}
             <p>
               Labore et dolore magna aliqua. Ut enim ad minim veniam, quis

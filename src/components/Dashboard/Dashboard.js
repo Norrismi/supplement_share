@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import TopNav from "../Navigation/TopNav/TopNav";
+import {connect} from 'react-redux'
 import './DashboardStyles.css'
 import SupplementCard from '../Supplement/SupplementCard/SupplementCard'
 
 class Dashboard extends Component {
-  state = {};
   render() {
+    const { supplement } = this.props;
     return (
       <div>
             <TopNav />
@@ -26,7 +27,10 @@ class Dashboard extends Component {
           <div className="right side">
             <h3>My Supplements</h3>
             <div className="supplement-card">
-              <SupplementCard className="supplement-card" />
+            {supplement &&
+              supplement.map(supplement => {
+                return <SupplementCard supplement={supplement} key={supplement.id} />;
+              })}
             </div>
           </div>
         </div>
@@ -35,4 +39,10 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    supplement: state.supplement.submission
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard);
