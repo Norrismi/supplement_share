@@ -3,55 +3,19 @@ import "./NS-Form-Styles.css";
 import { createSupplement } from "../../Store/Actions/supplementActions";
 import { connect } from "react-redux";
 
-//Need to convert form to the supplementTracking project
-
 class NewSupplementForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      supplementName: "",
       benefit: "",
       description: "",
       createdDate: "",
     };
   }
-  // postDataHandler = (e) => {
-  //     e.preventDefault();
-  //     this.props.onSubmit(this.state);
-
-  //     const data = this.state;
-
-  //     data.phone && data.message
-  //       ? api.post("/submission.json", data)
-  //       : this.setState({
-  //           name: "",
-  //           phone: "",
-  //           email: "",
-  //           message: "",
-  //           success: [],
-  //         });
-  //   };
-
-  //   handleChange = (event) => {
-  //     event.preventDefault();
-  //     const { name, value } = event.target;
-  //     let formErrors = this.state.formErrors;
-
-  //     switch (name) {
-  //       case "email":
-  //         formErrors.email = emailRegex.test(value)
-  //           ? null
-  //           : "Please enter a valid email address";
-  //         break;
-
-  //       default:
-  //         break;
-  //     }
-  //     this.setState({ formErrors, [name]: value });
-  //   };
 
   handleChange = (event) => {
-    console.log(event);
+    //console.log(event);
     const { name, value } = event.target;
 
     this.setState({ [name]: value });
@@ -59,7 +23,12 @@ class NewSupplementForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({ name: "", benefit: "", description: "", createdDate: "" });
+    this.setState({
+      supplementName: "",
+      benefit: "",
+      description: "",
+      createdDate: "",
+    });
 
     this.props.createSupplement(this.state);
     //console.log(this.state);
@@ -76,8 +45,8 @@ class NewSupplementForm extends Component {
               <input
                 id="add-sup-input"
                 type="text"
-                name="name"
-                value={this.state.name}
+                name="supplementName"
+                value={this.state.supplementName}
                 onChange={this.handleChange}
                 placeholder="Supplement Name"
                 required

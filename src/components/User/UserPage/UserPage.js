@@ -1,23 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
 import TopNav from "../../Navigation/TopNav/TopNav";
 import "../../Supplement/SupplementCard/SC-Styles.css";
 import SupplementCard from "../../Supplement/SupplementCard/SupplementCard";
-import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
 
 import "./UserPageStyles.css";
 import NewSupplementForm from "../../Supplement/NewSupplement/NewSupplementForm";
 import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
+import {Link} from 'react-router-dom'
 
-class UserPage extends Component {
-  render() {
-    const { supplement } = this.props;
+const UserPage =({supplement})=>{
+
 
     return (
       <div>
         <TopNav />
         <div className="user-container">
           <div className="left-side">
-              <Typography variant="h4"> My Supplements</Typography>
+            <Typography variant="h4"> My Supplements</Typography>
             {/* <h3>About Me</h3> */}
             {/* If the paragraph wants to be kept a form is needed */}
             <p>
@@ -30,22 +32,17 @@ class UserPage extends Component {
             </p>
           </div>
           <div className="right-side">
-          <Typography variant="h4"> My Supplements</Typography>
-          
-            {/* <div className="supplement-card"> */}
-
-            {/* supplementName={a.supplementName}
-            benefit={a.benefit}
-            description={a.description}
-            submittedBy={a.submittedBy} */}
+            <Typography variant="h4"> My Supplements</Typography>
 
             {supplement &&
-              supplement.map(supplement => {
-                return <SupplementCard supplement={supplement} key={supplement.id} />;
+              supplement.map((supplement) => {
+                return (
+                  <Link to={`/supplement/${supplement.id}`}>
+                  <SupplementCard supplement={supplement} key={supplement.id} />
+                  </Link>
+                );
               })}
 
-            {/* <SupplementCard className="supplement-card" supplement={supplement}  /> */}
-            {/* </div> */}
           </div>
         </div>
         <div className="add-supplement-container">
@@ -55,16 +52,17 @@ class UserPage extends Component {
         </div>
       </div>
     );
-  }
+
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
-    supplement: state.supplement.submission,
+    supplement: state.firestore.ordered.supplements
   };
 };
 
-export default connect(mapStateToProps)(UserPage);
-
-
-
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "supplements" }])
+)(UserPage);

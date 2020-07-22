@@ -14,7 +14,7 @@ function App() {
       <Switch>
         <Route path="/SignUp" component={SignUp} />
         <Route path="/SignIn"  component={SignIn} />
-        <Route path="/IndvSupplementView/:id" component={IndvSupplementView} />
+        <Route path="/supplement/:id" component={IndvSupplementView} />
         <Route path="/MyPage" component={UserPage} />
         <Route path="/" exact component={Dashboard} />
         <Route path="*" component={NotFound} />
