@@ -36,7 +36,7 @@ const UserPage = ({ supplement }) => {
             supplement.map((supplement) => {
               return (
                 <Link to={`/supplement/${supplement.id}`} key={supplement.id}>
-                  <SupplementCard supplement={supplement} key={supplement.id} />
+                  <SupplementCard supplement={supplement} />
                 </Link>
               );
             })}
@@ -52,7 +52,7 @@ const UserPage = ({ supplement }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
+
   return {
     supplement: state.firestore.ordered.supplements,
   };

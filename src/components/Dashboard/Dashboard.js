@@ -10,8 +10,8 @@ class Dashboard extends Component {
     return (
       <div>
             <TopNav />
-        <div className="user-container">
-          <div className="left-side">
+        <div className=" row">
+          <div className="col s12 m6">
             <h3>Supplement Community</h3>
             {/* If the paragraph wants to be kept a form is needed */}
             <p>
@@ -24,7 +24,7 @@ class Dashboard extends Component {
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           </div>
-          <div className="right side">
+          <div className="col s12 m5 offset-m1">
             <h3>My Supplements</h3>
             <div className="supplement-card">
             {supplement &&

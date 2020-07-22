@@ -1,67 +1,44 @@
 import React, { Component } from "react";
 import TopNav from "../Navigation/TopNav/TopNav";
 import "./AuthForm.css";
+import { connect } from "react-redux";
+import { signIn } from "../Store/Actions/authActions";
 
 class SignIn extends Component {
   state = {
     password: "",
     email: "",
   };
-  // postDataHandler = (e) => {
-  //     e.preventDefault();
-  //     this.props.onSubmit(this.state);
 
-  //     const data = this.state;
-
-  //     data.phone && data.message
-  //       ? api.post("/submission.json", data)
-  //       : this.setState({
-  //           name: "",
-  //           phone: "",
-  //           email: "",
-  //           message: "",
-  //           success: [],
-  //         });
-  //   };
 
   handleChange = (event) => {
-    console.log(event);
     const { name, value } = event.target;
-    //   let formErrors = this.state.formErrors;
 
-    //   switch (name) {
-    //     case "email":
-    //       formErrors.email = emailRegex.test(value)
-    //         ? null
-    //         : "Please enter a valid email address";
-    //       break;
-
-    //     default:
-    //       break;
-    //   }
     this.setState({ [name]: value });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
+    this.setState({ password: "", email: "" });
+
+    this.props.signIn(this.state);
   };
 
   render() {
-    // let { formErrors } = this.state;
+    const { authError } = this.props;
     return (
       <div>
         <TopNav />
         <div className="auth-container">
           <div className="auth-form">
             <form onSubmit={this.handleSubmit}>
-              <h5 className="auth-title">Sign In</h5>
+              <h5 className="auth-title">Login</h5>
               <div>
                 <input
                   id="auth-input"
                   type="password"
                   name="password"
-                  value={this.state.name}
+                  value={this.state.password}
                   onChange={this.handleChange}
                   placeholder="Password"
                   required
@@ -73,21 +50,19 @@ class SignIn extends Component {
                   id="auth-input"
                   type="email"
                   name="email"
-                  value={this.state.name}
+                  value={this.state.email}
                   onChange={this.handleChange}
                   placeholder="abc@email.com"
                   required
                 />
+                <div>{authError ? <p className='center'>{authError}</p> : null}</div>
               </div>
-
-              {/* {formErrors.phone ? <span>{formErrors.phone}</span> : null} */}
-
-              {/* {formErrors.email ? <span>{formErrors.email}</span> : null} */}
 
               <br />
               <div className="auth-btn-container">
-
-              <button className='auth-sub' type="submit">Sign In</button>
+                <button className="auth-sub" type="submit">
+                  Sign In
+                </button>
               </div>
             </form>
           </div>
@@ -97,4 +72,18 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+const mapStateToProps = (state) => {
+  return {
+    authError: state.auth.authError,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: (credentials) => {
+      dispatch(signIn(credentials));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

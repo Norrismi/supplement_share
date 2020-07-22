@@ -4,13 +4,16 @@ import { Link } from "react-router-dom";
 
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
+import { connect } from "react-redux";
 
 const NavBar = () => {
   return (
     <nav className="nav-wrapper grey darken-3">
       <div className="container">
-        <Link to="/" className="brand-logo">Home</Link>
-       
+        <Link to="/" className="brand-logo">
+          Home
+        </Link>
+
         <SignedInLinks />
         <SignedOutLinks />
       </div>
@@ -18,7 +21,14 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+const mapStateToProps = (state) => {
+  
+  return {
+    firebase: state.firebase
+  }
+}
+
+export default connect(mapStateToProps)(NavBar);
 
 // const NavBar = () => {
 //   return (
