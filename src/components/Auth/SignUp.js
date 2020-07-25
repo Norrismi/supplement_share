@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import TopNav from "../Navigation/TopNav/TopNav";
 import "./AuthForm.css";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { signUp } from "../Store/Actions/authActions";
 
 class SignUp extends Component {
   state = {
@@ -9,48 +12,26 @@ class SignUp extends Component {
     firstName: "",
     lastName: "",
   };
-  // postDataHandler = (e) => {
-  //     e.preventDefault();
-  //     this.props.onSubmit(this.state);
-
-  //     const data = this.state;
-
-  //     data.phone && data.message
-  //       ? api.post("/submission.json", data)
-  //       : this.setState({
-  //           name: "",
-  //           phone: "",
-  //           email: "",
-  //           message: "",
-  //           success: [],
-  //         });
-  //   };
 
   handleChange = (event) => {
-    console.log(event);
     const { name, value } = event.target;
-    //   let formErrors = this.state.formErrors;
 
-    //   switch (name) {
-    //     case "email":
-    //       formErrors.email = emailRegex.test(value)
-    //         ? null
-    //         : "Please enter a valid email address";
-    //       break;
-
-    //     default:
-    //       break;
-    //   }
     this.setState({ [name]: value });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
+
+    this.props.signUp(this.state);
   };
 
   render() {
     // let { formErrors } = this.state;
+
+    const { auth, authError } = this.props;
+
+    if (auth.uid) return <Redirect to="/" />;
+
     return (
       <div>
         <TopNav />
@@ -66,7 +47,6 @@ class SignUp extends Component {
                   value={this.state.firstName}
                   onChange={this.handleChange}
                   placeholder="First Name"
-              
                 />
               </div>
               <br />
@@ -79,7 +59,6 @@ class SignUp extends Component {
                   value={this.state.lastName}
                   onChange={this.handleChange}
                   placeholder="Last Name"
-          
                 />
               </div>
               <br />
@@ -107,11 +86,10 @@ class SignUp extends Component {
                 />
               </div>
 
-              {/* {formErrors.phone ? <span>{formErrors.phone}</span> : null} */}
-
-              {/* {formErrors.email ? <span>{formErrors.email}</span> : null} */}
+            {authError ?   <p>{authError}</p> : null}
 
               <br />
+
               <div className="auth-btn-container">
                 <button className="auth-sub" type="submit">
                   Sign Up
@@ -125,4 +103,17 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signUp: (newUser) => dispatch(signUp(newUser)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+    authError: state.auth.authError,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

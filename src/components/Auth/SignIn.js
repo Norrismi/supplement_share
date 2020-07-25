@@ -3,13 +3,13 @@ import TopNav from "../Navigation/TopNav/TopNav";
 import "./AuthForm.css";
 import { connect } from "react-redux";
 import { signIn } from "../Store/Actions/authActions";
+import { Redirect } from "react-router-dom";
 
 class SignIn extends Component {
   state = {
     password: "",
     email: "",
   };
-
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -25,7 +25,12 @@ class SignIn extends Component {
   };
 
   render() {
-    const { authError } = this.props;
+    const { authError, auth } = this.props;
+
+    if (auth.uid) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <div>
         <TopNav />
@@ -55,7 +60,9 @@ class SignIn extends Component {
                   placeholder="abc@email.com"
                   required
                 />
-                <div>{authError ? <p className='center'>{authError}</p> : null}</div>
+                <div>
+                  {authError ? <p className="center">{authError}</p> : null}
+                </div>
               </div>
 
               <br />
@@ -75,6 +82,7 @@ class SignIn extends Component {
 const mapStateToProps = (state) => {
   return {
     authError: state.auth.authError,
+    auth: state.firebase.auth,
   };
 };
 

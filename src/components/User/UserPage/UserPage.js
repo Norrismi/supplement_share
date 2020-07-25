@@ -10,11 +10,22 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Link } from "react-router-dom";
+import {Redirect} from 'react-router-dom'
 
-const UserPage = ({ supplement }) => {
+
+const UserPage = (props) => {
+  const {supplement, auth} = props 
+
+if(!auth.uid){
+  return <Redirect to='/SignIn'/>
+}
+
   return (
     <div>
       <TopNav />
+
+
+
       <div className="user-container">
         <div className="left-side">
           <Typography variant="h4"> My Supplements</Typography>
@@ -55,6 +66,8 @@ const mapStateToProps = (state) => {
 
   return {
     supplement: state.firestore.ordered.supplements,
+    auth: state.firebase.auth
+   
   };
 };
 
