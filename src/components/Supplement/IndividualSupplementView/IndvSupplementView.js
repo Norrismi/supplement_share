@@ -5,6 +5,7 @@ import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
+import moment from 'moment'
 
 const IndvSupplementView = (props) => {
   const { supplement } = props;
@@ -40,9 +41,9 @@ const IndvSupplementView = (props) => {
               <div id="indv-entry">{supplement.supplementName}</div>
               <br />
               <br />
-
+      
               <div id="indv-title">Date Stamp:</div>
-              <div id="indv-entry">7/16/20</div>
+    <div id="indv-entry">{moment(supplement.createdDate).format('LL')}</div>
               <br />
               <br />
             </div>

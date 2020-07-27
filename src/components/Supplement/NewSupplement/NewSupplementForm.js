@@ -3,6 +3,7 @@ import "./NS-Form-Styles.css";
 import { createSupplement } from "../../Store/Actions/supplementActions";
 import { connect } from "react-redux";
 
+
 class NewSupplementForm extends Component {
   constructor(props) {
     super(props);
@@ -76,19 +77,19 @@ class NewSupplementForm extends Component {
                 rows="20"
               ></textarea>
             </div>
-            {/* {formErrors.phone ? <span>{formErrors.phone}</span> : null} */}
-            {/* <div className="created-date">
+
+            <div className="created-date">
               <label>Date Created</label>
               <br />
               <input 
               type="date" 
               id="created-date" 
               name="createdDate"
-              value={this.state.description}
+              value={this.state.createdDate}
               onChange={this.handleChange} 
               />
-            </div> */}
-            {/* {formErrors.email ? <span>{formErrors.email}</span> : null} */}
+            </div>
+          
 
             <br />
             <div className="add-btn-container">

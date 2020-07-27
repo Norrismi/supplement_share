@@ -73,5 +73,5 @@ const mapStateToProps = (state) => {
 
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([{ collection: "supplements" }])
+  firestoreConnect([{ collection: "supplements", orderBy: ['createdDate', 'desc'] }])
 )(UserPage);

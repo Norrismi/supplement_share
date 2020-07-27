@@ -19,6 +19,9 @@ export const signUp = (newUser) => {
     const firebase = getFirebase();
     const firestore = getFirestore();
 
+    const firstName = newUser.firstName[0].toUpperCase()
+    const lastName =  newUser.lastName[0].toUpperCase()
+
     firebase
       .auth()
       .createUserWithEmailAndPassword(newUser.email, newUser.password)
@@ -29,7 +32,7 @@ export const signUp = (newUser) => {
           .set({
             firstName: newUser.firstName,
             lastName: newUser.lastName,
-            initials: newUser.firstName[0] + newUser.lastName[0],
+            initials: firstName + lastName
           });
       })
       .then(() => {

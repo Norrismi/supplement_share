@@ -11,6 +11,7 @@ import { red } from '@material-ui/core/colors';
 import ShareIcon from '@material-ui/icons/Share';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import moment from 'moment'
 
 
 
@@ -49,9 +50,9 @@ const useStyles = makeStyles((theme) => ({
             R
           </Avatar>
         }
-  
+       
         title={supplement.supplementName}
-        subheader="September 14, 2016"
+        subheader={moment(supplement.createdDate).format('LL')}
       />
 
       <CardContent>
