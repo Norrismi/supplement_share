@@ -1,67 +1,9 @@
-/* 
+/* /* 
 #6B717E grey
 #FF7E6B Salmon
 #F0F7F4 White
 #A2E3C4 Mint
 #2A0C4E Purple */
 
-
-
-
-*{
-    box-sizing: border-box;
-}
-
-.user-container{
-    display: flex;
-    padding: 40px;
-}
-
-
-.left-side{
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    /* padding: 20px; */
-}
-
-.right-side{
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    width: 60%;
-    /* padding: 20px; */
-    
-    
-}
-
-h3{
-    display: flex;
-    justify-content: center;
-}
-
-.supplement-card{
-    display: flex;
-    flex-direction: row;
-
-
-}
-
-
-/* ------------ */
-
-
-/* .add-supplement-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-} */
-
-
-
-/* .add-supplement{
-    display: flex;
-    justify-content: center;
-} */
 
 

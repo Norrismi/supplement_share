@@ -16,6 +16,8 @@ import {Redirect} from 'react-router-dom'
 const UserPage = (props) => {
   const {supplement, auth} = props 
 
+
+
 if(!auth.uid){
   return <Redirect to='/SignIn'/>
 }
