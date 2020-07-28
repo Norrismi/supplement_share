@@ -1,9 +1,10 @@
 import React from "react";
 import TopNav from "../Navigation/TopNav/TopNav";
-import { connect } from "react-redux";
 import "./DashboardStyles.css";
+import { connect } from "react-redux";
 import SupplementCard from "../Supplement/SupplementCard/SupplementCard";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
+
 
 const Dashboard = (props) => {
   const { supplement, auth } = props;
@@ -35,7 +36,9 @@ const Dashboard = (props) => {
             {supplement &&
               supplement.map((supplement) => {
                 return (
+                  <Link to={`/supplement/${supplement.id}`} key={supplement.id}>
                   <SupplementCard supplement={supplement} key={supplement.id} />
+                  </Link>
                 );
               })}
           </div>

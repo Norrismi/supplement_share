@@ -1,69 +1,48 @@
 import React, { Component } from "react";
-import { FaShareSquare, FaPen, FaTimes } from "react-icons/fa";
 import "./SC-Styles.css";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { deleteSupplement } from "../../Store/Actions/supplementActions";
-import moment from 'moment'
+import moment from "moment";
 
 class SupplementCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
+    this.state = {};
   }
 
-
-  
-  
   handleDelete = (e) => {
     const { id } = this.props;
     e.preventDefault();
     this.props.deleteSupplement();
   };
-  
+
   render(props) {
-    console.log(this.props.id)
-    const {supplement} = this.props
+    console.log(this.props.id);
+    const { supplement } = this.props;
     return (
-      <div className="card mb-2 sc-card-container">
-        <h5 className="card-title card-header"> {supplement.supplementName}</h5>
+      <div className="card mb-2 sc-card-container hoverable">
+        <h5 className="card-title user-card-title card-header">
+          {" "}
+          {supplement.supplementName}
+        </h5>
         <div className="card-body">
           <div className="col-md-12">
             <p className="card-text">
               <strong>Benefit: </strong>
               {supplement.benefit}
             </p>
-            <p className="card-text">
+            <p className="card-text truncate">
               <strong>Description: </strong>
               {supplement.description}
             </p>
             <p className="card-text">
-              <small className="text-muted">{moment(supplement.createdDate).format('LL')}</small>
+              <small className="text-muted">
+                {moment(supplement.createdDate).format("LL")}
+              </small>
             </p>
           </div>
-         
-
-            <p className="action-icons">
-              <button title="Share" className="btn-icon">
-                <FaShareSquare className="share-icon" />
-              </button>
-
-              <button title="Edit" className="btn-icon">
-                <FaPen className="edit-icon" />
-              </button>
-
-              <button
-                title="Delete"
-                className="btn-icon"
-                onClick={() => this.handleDelete}
-              >
-                <FaTimes className="delete-icon" />
-              </button>
-            </p>
-         
         </div>
       </div>
     );
@@ -80,7 +59,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 const mapStateToProps = (state) => {
   return {
-    id: state.firestore.data.supplements
+    id: state.firestore.data.supplements,
   };
 };
 
@@ -88,16 +67,6 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([{ collection: "supplements" }])
 )(SupplementCard);
-
-
-
-
-
-
-
-
-
-
 
 // import React from 'react';
 // import { makeStyles } from '@material-ui/core/styles';

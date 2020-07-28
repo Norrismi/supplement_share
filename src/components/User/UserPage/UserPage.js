@@ -16,7 +16,11 @@ import {Redirect} from 'react-router-dom'
 const UserPage = (props) => {
   const {supplement, auth} = props 
 
-
+  // handleDelete = e => {
+  //   const {id} = this.props;
+  //   e.preventDefault()
+  //   this.props.deleteSupplement()
+  // }
 
 if(!auth.uid){
   return <Redirect to='/SignIn'/>
