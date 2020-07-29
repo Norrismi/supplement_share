@@ -12,14 +12,9 @@ class SupplementCard extends Component {
     this.state = {};
   }
 
-  handleDelete = (e) => {
-    const { id } = this.props;
-    e.preventDefault();
-    this.props.deleteSupplement();
-  };
+
 
   render(props) {
-    console.log(this.props.id);
     const { supplement } = this.props;
     return (
       <div className="card mb-2 sc-card-container hoverable">

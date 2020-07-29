@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import history from './Utils/History'
 import Dashboard from "./components/Dashboard/Dashboard";
 import NotFound from "./components/Navigation/NotFound/NotFound";
 import UserPage from "./components/User/UserPage/UserPage";
@@ -11,7 +12,7 @@ import SignUp from "./components/Auth/SignUp";
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route path="/SignUp" component={SignUp} />
         <Route path="/SignIn" component={SignIn} />

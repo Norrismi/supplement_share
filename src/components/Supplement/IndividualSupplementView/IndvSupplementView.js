@@ -1,76 +1,111 @@
-import React from "react";
+import React, { Component } from "react";
 import "./IndvSV-Styles.css";
 import TopNav from "../../Navigation/TopNav/TopNav";
 import { FaShareSquare, FaPen, FaTimes } from "react-icons/fa";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
+import { deleteSupplement } from "../../Store/Actions/supplementActions";
 import moment from "moment";
 
-const IndvSupplementView = (props) => {
-  const { supplement } = props;
-  //console.log(props)
+class IndvSupplementView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      supplement: this.props.supplement,
+    };
+  }
 
-  if (supplement) {
-    return (
-      <div>
-        <TopNav />
+  handleDelete = (e) => {
+    e.preventDefault();
+    deleteSupplement(this.props.id);
+  };
 
-        <div className="indv-card-container">
-          {/* <img src="images/sample-1.jpg" /> */}
-          <div className="card indv-card z-depth-5   ">
-            <div className="card-content white-text indv-card-content">
-              <span className="card-title indv-card-title">
-                {supplement.supplementName}
-              </span>
-              {/* <a className="btn-floating halfway-fab waves-effect waves-light z-depth-5 red">
-              <i className="material-icons">add</i>
-            </a> */}
+  // componentDidMount() {
+  //   const { supplement } = this.props;
 
-              <br />
-              <p className="indv-card-text">
-                <strong>Benefit:</strong> {supplement.benefit}
-              </p>
-              <br />
-              <p className="indv-card-text">
-                <strong>Description:</strong> {supplement.description}
-              </p>
-              <br />
-              <p className="indv-card-date">
-                <i>{moment(supplement.createdDate).format("LL")}</i>
-              </p>
-            </div>
-            <div class="card-action">
-              <div className="action-icons">
-                <button title="Share" className="btn-icon">
-                  <FaShareSquare className="share-icon" />
-                </button>
+  //   return !supplement
+  //     ? this.setState(
+  //         setTimeout(() => {
+  //           this.props.history.push("/");
+  //         }, 5000)
+  //       )
+  //     : null;
+  // }
 
-                <button title="Edit" className="btn-icon">
-                  <FaPen className="edit-icon" />
-                </button>
+  render(props) {
+    const { supplement, dispatchDeleteSupplement, id } = this.props;
 
-                <button
-                  title="Delete"
-                  className="btn-icon"
-                  onClick={() => this.handleDelete}
-                >
-                  <FaTimes className="delete-icon" />
-                </button>
+    if (supplement) {
+      return (
+        <div>
+          <TopNav />
+
+          <div className="indv-card-container">
+            <div className="card indv-card z-depth-5   ">
+              <div className="card-content white-text indv-card-content">
+                <span className="card-title indv-card-title">
+                  {supplement.supplementName}
+                </span>
+                {/* <a className="btn-floating halfway-fab waves-effect waves-light z-depth-5 red">
+                <i className="material-icons">add</i>
+              </a> */}
+
+                <br />
+                <p className="indv-card-text">
+                  <strong>Benefit:</strong> {supplement.benefit}
+                </p>
+                <br />
+                <p className="indv-card-text">
+                  <strong>Description:</strong> {supplement.description}
+                </p>
+                <br />
+                <p className="indv-card-date">
+                  {supplement.createdDate ? (
+                    <i>{moment(supplement.createdDate).format("LL")}</i>
+                  ) : null}
+                </p>
+              </div>
+              <div className="card-action">
+                <div className="action-icons">
+                  <button title="Share" className="btn-icon">
+                    <FaShareSquare className="share-icon" />
+                  </button>
+
+                  <button title="Edit" className="btn-icon">
+                    <FaPen className="edit-icon" />
+                  </button>
+
+                  <button
+                    title="Delete"
+                    className="btn-icon"
+                    onClick={() => dispatchDeleteSupplement(id)}
+                  >
+                    <FaTimes className="delete-icon" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="container center">
-        {/* Needs to be centered */}
-        <p>Loading project...</p>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="container center">
+          {/* Needs to be centered */}
+          <p>Loading project...</p>
+        </div>
+      );
+    }
   }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchDeleteSupplement: (id) => {
+      dispatch(deleteSupplement(id));
+    },
+  };
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -80,15 +115,14 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     supplement: supplementId,
+    id: id,
   };
 };
 
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([{ collection: "supplements" }])
 )(IndvSupplementView);
-
-// Share, Edit and Delete buttons ///////////
 
 // import React from "react";
 // import "./IndvSV-Styles.css";

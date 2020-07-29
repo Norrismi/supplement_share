@@ -1,3 +1,5 @@
+import history from "../../../Utils/History";
+
 export const createSupplement = (supplement) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
@@ -22,7 +24,7 @@ export const createSupplement = (supplement) => {
 };
 
 export const deleteSupplement = (id) => {
-  return (dispatch, getState, { getFirebase, getFirestore }) => {
+  return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
 
     firestore
@@ -31,6 +33,9 @@ export const deleteSupplement = (id) => {
       .delete()
       .then(() => {
         dispatch({ type: "DELETE_SUPPLEMENT", id });
+      })
+      .then(() => {
+        history.push("/MyPage");
       })
       .catch((err) => {
         dispatch({ type: "DELETE_SUPPLEMENT_ERROR", err });
