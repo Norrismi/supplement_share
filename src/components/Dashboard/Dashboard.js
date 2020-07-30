@@ -4,10 +4,14 @@ import "./DashboardStyles.css";
 import { connect } from "react-redux";
 import SupplementCard from "../Supplement/SupplementCard/SupplementCard";
 import { Redirect, Link } from "react-router-dom";
-
+import shareSupplement from "../Store/Actions/supplementActions";
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
 
 const Dashboard = (props) => {
-  const { supplement, auth } = props;
+  const { supplement, auth, id } = props;
+  //const {sharedSupplement} = state. 
+  console.log(props.sharedSupplement)
 
   if (!auth.uid) {
     return <Redirect to="/SignIn" />;
@@ -37,22 +41,46 @@ const Dashboard = (props) => {
               supplement.map((supplement) => {
                 return (
                   <Link to={`/supplement/${supplement.id}`} key={supplement.id}>
-                  <SupplementCard supplement={supplement} key={supplement.id} />
+                    <SupplementCard
+                      supplement={supplement}
+                      key={supplement.id}
+                    />
                   </Link>
                 );
               })}
           </div>
+          <h3>Shared Supplements</h3>
+          {supplement &&
+              supplement.map((supplement) => {
+                return (
+           
+                    <SupplementCard
+                      supplement={supplement}
+                      key={supplement.id}
+                    />
+               
+                );
+              })}
+     
         </div>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => ({
+  dispatchShareSupplement: (id) => dispatch(id),
+});
+
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.id;
   return {
-    supplement: state.supplement.submission,
+    //supplement: state.supplement.submission,
     auth: state.firebase.auth,
+    sharedSupplement: state.firestore.ordered.supplements
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+export default compose(connect(mapStateToProps, mapDispatchToProps),
+firestoreConnect([{ collection: "supplements" }])
+)(Dashboard);

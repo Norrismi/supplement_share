@@ -28,12 +28,19 @@ const supplementReducer = (state = initState, action) => {
       console.log("CREATE_SUPPLEMENT_ERROR", action.err);
       return state;
 
-    case 'DELETE_SUPPLEMENT':
-      console.log("DELETE_SUPPLEMENT")
+    case "DELETE_SUPPLEMENT":
+      console.log("DELETE_SUPPLEMENT");
       return state;
-      case 'DELETE_SUPPLEMENT_ERROR':
-        console.log("DELETE_SUPPLEMENT_ERROR", action.err)
-        return state;
+    case "DELETE_SUPPLEMENT_ERROR":
+      console.log("DELETE_SUPPLEMENT_ERROR", action.err);
+      return state;
+
+    case 'SHARE_SUPPLEMENT':
+      console.log('SHARE_SUPPLEMENT -- REDUCER')
+      return {...state, sharedId: action.id}
+    case 'SHARE_SUPPLEMENT_ERROR':
+    console.log("SHARE_SUPPLEMENT_ERROR", action.err);
+    return state
 
     default:
       return state;
@@ -42,6 +49,4 @@ const supplementReducer = (state = initState, action) => {
 
 export default supplementReducer;
 
-// CREATE_SUPPLEMENT
 
-// CREATE_SUPPLEMENT_ERROR

@@ -5,7 +5,10 @@ import { FaShareSquare, FaPen, FaTimes } from "react-icons/fa";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
-import { deleteSupplement } from "../../Store/Actions/supplementActions";
+import {
+  deleteSupplement,
+  shareSupplement,
+} from "../../Store/Actions/supplementActions";
 import moment from "moment";
 
 class IndvSupplementView extends Component {
@@ -16,25 +19,34 @@ class IndvSupplementView extends Component {
     };
   }
 
+  handleShare = (e) => {
+    e.preventDefault();
+    shareSupplement(this.props.id);
+  };
+
   handleDelete = (e) => {
     e.preventDefault();
     deleteSupplement(this.props.id);
   };
 
   // componentDidMount() {
-  //   const { supplement } = this.props;
+  //   const { supplement, id } = this.props;
+  //   console.log(this.props.id);
 
-  //   return !supplement
-  //     ? this.setState(
-  //         setTimeout(() => {
-  //           this.props.history.push("/");
-  //         }, 5000)
-  //       )
+  //   return !id
+  //     ? setTimeout(() => {
+  //         this.props.history.push("/");
+  //       }, 5000)
   //     : null;
   // }
 
   render(props) {
-    const { supplement, dispatchDeleteSupplement, id } = this.props;
+    const {
+      supplement,
+      dispatchDeleteSupplement,
+      id,
+      dispatchShareSupplement,
+    } = this.props;
 
     if (supplement) {
       return (
@@ -68,7 +80,11 @@ class IndvSupplementView extends Component {
               </div>
               <div className="card-action">
                 <div className="action-icons">
-                  <button title="Share" className="btn-icon">
+                  <button
+                    title="Share"
+                    className="btn-icon"
+                    onClick={() => dispatchShareSupplement(id)}
+                  >
                     <FaShareSquare className="share-icon" />
                   </button>
 
@@ -100,18 +116,16 @@ class IndvSupplementView extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatchDeleteSupplement: (id) => {
-      dispatch(deleteSupplement(id));
-    },
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  dispatchDeleteSupplement: (id) => dispatch(deleteSupplement(id)),
+  dispatchShareSupplement: (id) => dispatch(shareSupplement(id)),
+});
 
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
   const supplements = state.firestore.data.supplements;
   const supplementId = supplements ? supplements[id] : null;
+
 
   return {
     supplement: supplementId,

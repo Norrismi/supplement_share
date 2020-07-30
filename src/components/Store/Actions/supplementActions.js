@@ -42,3 +42,24 @@ export const deleteSupplement = (id) => {
       });
   };
 };
+
+
+export const shareSupplement = (id, supplement) => {
+  return (dispatch, getState, {getFirestore}) => {
+    const firestore = getFirestore()
+    console.log(id, 'shareSupplement reached')
+
+    firestore
+    .collection("sharedSupplements")
+    .add({
+   ...supplement,
+    sharedSupplement: id
+    })
+    .then(()=>{
+      dispatch({type: "SHARE_SUPPLEMENT", id})
+    }).catch((err)=> {
+      dispatch({type: "SHARE_SUPPLEMENT_ERROR", err})
+    })
+  
+  }
+}
